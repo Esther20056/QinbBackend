@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'Countries',
     'Cart',
     'ShippingMethod',
-    'BlogPost',
 ]
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
