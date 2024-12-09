@@ -25,7 +25,6 @@ class CountrySelection(models.Model):
         ("Saudi Arabia", "Saudi Arabia"),
         ("Belgium", "Belgium")
     ]
-    
     country = models.CharField(max_length=255, choices=COUNTRY_CHOICES)
     guest_id = models.CharField(max_length=255)
     

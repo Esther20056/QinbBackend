@@ -6,25 +6,33 @@ from Products.models import Items
 
 
 @api_view(['POST'])
-def checkout(request):
+def CartItemStorage(request):
     if request.method == 'POST':
         cart_data = request.data
         total_price = cart_data['total']
         items = cart_data['items']
-
-        # create the order
         order = Order.objects.create(total_price=total_price)
-
-        # Create the order items
         for item in items:
             try:
                 product = Items.objects.get(id=item['id'])
-                OrderItem.objects.create(
+                order_item = OrderItem.objects.create(
                     order=order,
                     product=product,
+                    name=product.name, 
                     quantity=item['quantity']
                 )
             except Items.DoesNotExist:
                 return Response({'error': 'Product not found'}, status=status.HTTP_400_BAD_REQUEST)
-        return Response({'order_id': order.id, 'total_price': total_price}, status=status.HTTP_201_CREATED)
+        order_items = [
+            {
+                'product_name': item.product.name,
+                'quantity': item.quantity,
+            }
+            for item in order.items.all()
+        ]
 
+        return Response({
+            'order_id': order.id,
+            'total_price': total_price,
+            'order_items': order_items  
+        }, status=status.HTTP_201_CREATED)

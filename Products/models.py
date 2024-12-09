@@ -12,5 +12,6 @@ class Items(models.Model):
     category = models.CharField(max_length=20, blank=True, null=True)
     productCategoryIdentifier = models.CharField(max_length=20, blank=True, null=True)
     subcategory = models.CharField(max_length=20, blank=True, null=True) 
-    weight = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)  
+    weight = models.CharField(max_length=8,null=True, blank=True)  
+    color = models.CharField(max_length=20, default='color')
 

@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import checkout
+from .views import CartItemStorage
 
 urlpatterns = [
-    path('checkout/', checkout, name='checkout'),
+    path('cartItemStorage/', CartItemStorage, name='checkout'),
 ]
