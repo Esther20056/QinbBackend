@@ -15,7 +15,6 @@ def Signup(request):
       return Response({"error" :"Input fields can't be empty"}, status=status.HTTP_400_BAD_REQUEST)   
  except BaseException as e: 
       return Response(str(e))
-   
 
 @api_view(['POST'])
 def Login(request):
